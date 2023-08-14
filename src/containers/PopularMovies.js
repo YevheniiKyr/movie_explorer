@@ -25,13 +25,13 @@ const PopularMovies = () => {
             dispatch(getPopularMovies(popularMovies.page + 1))
             return
         }
-        console.log("hasMore",(popularMovies.hasMore), "no more")
+        console.log("hasMore", (popularMovies.hasMore), "no more")
     }
-    // popularMovies.page === 0 && popularMovies.isFetching ?
-    //     <Loader/>
-    //     :
-    return <InfiniteScroll
-            dataLength= {popularMovies.totalResults}
+
+    return popularMovies.page === 0 && popularMovies.isFetching ?
+        <Loader/>
+        : <InfiniteScroll
+            dataLength={popularMovies.results.length}
             hasMore={true}
             loader={<Loader/>}
             next={loadMore}

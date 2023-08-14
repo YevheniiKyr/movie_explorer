@@ -2,12 +2,11 @@ import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {searchMovies} from "../redux/search";
 import {TextField, Grid, Typography} from "@mui/material";
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import {COVER_PLACEHOLDER, IMAGES_PATH} from "../config";
 import "../styles/suggestion.css"
 import {mapGenres} from "../helpers/mainHelper";
-import {isVisible} from "@testing-library/user-event/dist/utils";
-
+import {getMovie, resetState} from "../redux/movie"
 const Suggestion = () => {
 
     const dispatch = useDispatch()
@@ -22,7 +21,6 @@ const Suggestion = () => {
             return
         }
         setSuggestionVisible(true)
-
 
         dispatch(searchMovies(e.target.value))
     }
@@ -41,9 +39,9 @@ const Suggestion = () => {
                         inputOnChange(e)
                     }}
                     onBlur={(e) => {
-                        setSuggestionVisible(false)
+                        // setSuggestionVisible(false)
                     }}
-                    onFocus = {(e) => {
+                    onFocus={(e) => {
                         setSuggestionVisible(true)
                     }}
                     id="search"
@@ -56,36 +54,38 @@ const Suggestion = () => {
             </div>
 
 
-            <div style={{marginTop: '0rem', display: suggestionVisible ? null : 'none'}}>
+            <div style={{marginTop: '0rem', display: suggestionVisible ? null : 'none'}} >
                 {
                     movies
                         .results
-                        .filter(item => {
-                            return item.title.toLowerCase().includes(searchInput.toLowerCase())
+                        .filter(movie => {
+                            return movie.title.toLowerCase().includes(searchInput.toLowerCase())
                         })
                         .slice(0, 5)
-                        .map((item) => (
+                        .map((movie) => (
                             <div
                                 className={"suggestion"}
-                                key={item.id}
+                                key={movie.id}
                                 style={{padding: 0}}
                             >
-                                <Link to={`/movie/${item.id}`}>
+                                <Link to={`/movie/${movie.id}`} onClick={()=>{
+                                    setSuggestionVisible(false)
+                                } } >
                                     <Grid container={true} spacing={0}>
                                         <Grid item={true}>
-                                            {item.poster_path ?
-                                                <img src={`${IMAGES_PATH}/w92${item.poster_path}`}
-                                                     alt={item.title}/>
+                                            {movie.poster_path ?
+                                                <img src={`${IMAGES_PATH}/w92${movie.poster_path}`}
+                                                     alt={movie.title}/>
                                                 :
-                                                <img src={COVER_PLACEHOLDER} alt={item.title}/>
+                                                <img src={COVER_PLACEHOLDER} alt={movie.title}/>
                                             }
                                         </Grid>
                                         <Grid item={true}>
                                             <Typography>
-                                                {item.title}
+                                                {movie.title}
                                             </Typography>
                                             <div>
-                                                {mapGenres(item.genre_ids, genres.genres)}
+                                                {mapGenres(movie.genre_ids, genres.genres)}
                                             </div>
 
                                         </Grid>
