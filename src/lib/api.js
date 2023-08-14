@@ -21,6 +21,7 @@ export default class TheMovieDbApi {
     }
 
     getPopularMovies = async (page =1) => {
+        console.log("page in req", page)
         const resp = await fetch(
             `${this.apiBaseUrl}/movie/popular?api_key=${this.apiKey}&page=${page}`
         )

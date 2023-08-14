@@ -2,11 +2,11 @@ import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
     results: [],
-    hasMore: false,
+    hasMore: true,
     totalResults: 0,
     page: 0,
     totalPages: 0,
-    isFetching: false
+    isFetching: true
 }
 
 const moviesSlice = createSlice({
@@ -20,11 +20,12 @@ const moviesSlice = createSlice({
             }
         },
         fetchedPopularMovies: (state, action) => {
+            console.log("hasMore in reducer", action.payload.page < 100000)
             return {
                 ...state,
                 isFetching: false,
                 results: [...state.results, ...action.payload.results],
-                hasMore: action.payload.page < action.payload.total_pages,
+                hasMore: action.payload.page < 100000,
                 totalResults: action.payload.total_results,
                 page: action.payload.page,
                 totalPages: action.payload.total_pages

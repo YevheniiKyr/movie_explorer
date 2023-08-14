@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {getPopularMovies, resetState} from "../redux/movies";
 import Loader from "../components/Loader";
 import Movies from "../components/Movies";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 const PopularMovies = () => {
 
@@ -17,10 +18,27 @@ const PopularMovies = () => {
         }
     }, [dispatch])
 
-    return popularMovies.page === 0 && popularMovies.isFetching ?
-        <Loader/>
-        :
-        <Movies movies={popularMovies}/>
+    const loadMore = () => {
+        console.log("page", popularMovies.page + 1)
+
+        if (popularMovies.hasMore) {
+            dispatch(getPopularMovies(popularMovies.page + 1))
+            return
+        }
+        console.log("hasMore",(popularMovies.hasMore), "no more")
+    }
+    // popularMovies.page === 0 && popularMovies.isFetching ?
+    //     <Loader/>
+    //     :
+    return <InfiniteScroll
+            dataLength= {popularMovies.totalResults}
+            hasMore={true}
+            loader={<Loader/>}
+            next={loadMore}
+            endMessage={<div> What are you doing there man ...</div>}
+            style={{overflow: 'hidden'}}>
+            <Movies movies={popularMovies}/>
+        </InfiniteScroll>
 };
 
 export default PopularMovies;
