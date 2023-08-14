@@ -10,7 +10,7 @@
 #/src/config.js
 # production
 /build
-
+src/notes
 # misc
 .DS_Store
 .env.local

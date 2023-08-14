@@ -1,9 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {useParams} from "react-router-dom";
-import {getMovie, resetState} from "../redux/movie";
+import {getMovie} from "../redux/movie";
 import Loader from "../components/Loader";
-import Movies from "../redux/movies";
 import Movie from "../components/Movie";
 
 const MovieDetails = () => {

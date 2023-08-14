@@ -1,7 +1,5 @@
 import React, {useEffect} from 'react';
-import {TextField} from "@mui/material";
 import Suggestion from "../components/Suggestion";
-import {useSelector} from "react-redux";
 
 const SearchMoviesSuggestion = () => {
 

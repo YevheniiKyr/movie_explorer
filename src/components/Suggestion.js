@@ -2,11 +2,10 @@ import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {searchMovies} from "../redux/search";
 import {TextField, Grid, Typography} from "@mui/material";
-import {Link, useParams} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {COVER_PLACEHOLDER, IMAGES_PATH} from "../config";
 import "../styles/suggestion.css"
 import {mapGenres} from "../helpers/mainHelper";
-import {getMovie, resetState} from "../redux/movie"
 const Suggestion = () => {
 
     const dispatch = useDispatch()
@@ -38,10 +37,8 @@ const Suggestion = () => {
                     onChange={(e) => {
                         inputOnChange(e)
                     }}
-                    onBlur={(e) => {
-                        // setSuggestionVisible(false)
-                    }}
-                    onFocus={(e) => {
+
+                    onFocus={() => {
                         setSuggestionVisible(true)
                     }}
                     id="search"
