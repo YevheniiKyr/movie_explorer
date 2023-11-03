@@ -2,16 +2,13 @@ import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {searchMovies} from "../redux/search";
 import {TextField, Grid, Typography} from "@mui/material";
-import {Link} from "react-router-dom";
-import {COVER_PLACEHOLDER, IMAGES_PATH} from "../config";
 import "../styles/suggestion.css"
-import {mapGenres} from "../helpers/mainHelper";
+import MovieSuggest from "./MovieSuggest";
 const Suggestion = () => {
 
     const dispatch = useDispatch()
     const [suggestionVisible, setSuggestionVisible] = useState(false)
     const movies = useSelector((store) => store.search)
-    const genres = useSelector((store) => store.genres)
     const [searchInput, setSearchInput] = useState('')
     const inputOnChange = (e) => {
         setSearchInput(e.target.value)
@@ -20,7 +17,6 @@ const Suggestion = () => {
             return
         }
         setSuggestionVisible(true)
-
         dispatch(searchMovies(e.target.value))
     }
 
@@ -37,7 +33,9 @@ const Suggestion = () => {
                     onChange={(e) => {
                         inputOnChange(e)
                     }}
-
+                    // onBlur={() => {
+                    //     setSuggestionVisible(false)
+                    // }}
                     onFocus={() => {
                         setSuggestionVisible(true)
                     }}
@@ -65,29 +63,7 @@ const Suggestion = () => {
                                 key={movie.id}
                                 style={{padding: 0}}
                             >
-                                <Link to={`/movie/${movie.id}`} onClick={()=>{
-                                    setSuggestionVisible(false)
-                                } } >
-                                    <Grid container={true} spacing={0}>
-                                        <Grid item={true}>
-                                            {movie.poster_path ?
-                                                <img src={`${IMAGES_PATH}/w92${movie.poster_path}`}
-                                                     alt={movie.title}/>
-                                                :
-                                                <img src={COVER_PLACEHOLDER} alt={movie.title}/>
-                                            }
-                                        </Grid>
-                                        <Grid item={true}>
-                                            <Typography>
-                                                {movie.title}
-                                            </Typography>
-                                            <div>
-                                                {mapGenres(movie.genre_ids, genres.genres)}
-                                            </div>
-
-                                        </Grid>
-                                    </Grid>
-                                </Link>
+                                <MovieSuggest movie={movie} setSuggestionVisible={setSuggestionVisible}/>
                             </div>
                         ))
                 }

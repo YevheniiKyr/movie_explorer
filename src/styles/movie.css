@@ -1,0 +1,33 @@
+.image {
+    text-align: center;
+}
+
+.film_name {
+    font-weight: 600;
+    font-size: 2rem;
+    text-align: center;
+    color: #0a3672;
+    margin-bottom: 1rem;
+}
+
+.header {
+    font-weight: 400;
+    font-size: 1.5rem;
+    margin-top: 0.4rem
+}
+.top_header {
+    font-weight: 400;
+    font-size: 1.5rem;
+}
+
+.info{
+    margin-left: 1rem;
+}
+.normal {
+    font-size: 1rem;
+    margin-top: 0rem
+}
+
+.main_container {
+    display: flex;
+}

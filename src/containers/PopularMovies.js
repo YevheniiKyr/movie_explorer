@@ -11,7 +11,6 @@ const PopularMovies = () => {
     const {popularMovies} = useSelector((store) => store)
 
     useEffect(() => {
-        console.log("PM", popularMovies.results.length)
         dispatch(getPopularMovies())
         return () => {
             dispatch(resetState())
@@ -19,13 +18,10 @@ const PopularMovies = () => {
     }, [dispatch])
 
     const loadMore = () => {
-        console.log("page", popularMovies.page + 1)
-
         if (popularMovies.hasMore) {
             dispatch(getPopularMovies(popularMovies.page + 1))
             return
         }
-        console.log("hasMore", (popularMovies.hasMore), "no more")
     }
 
     return popularMovies.page === 0 && popularMovies.isFetching ?

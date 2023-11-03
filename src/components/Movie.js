@@ -1,65 +1,73 @@
 import React, {useEffect} from 'react';
-import {Grid, Typography} from "@mui/material";
+import {Card, Grid, Typography} from "@mui/material";
 import {COVER_PLACEHOLDER, IMAGES_PATH} from "../config";
-import {styled} from "@mui/system";
-
-
-
-const GridStyled = styled('Grid')(({theme}) => ({
-    marginBottom: theme.spacing(3)
-}))
+import "../styles/movie.css"
 
 
 const Movie = ({movie}) => {
-
     useEffect(() => {
-        console.log("RENDER MOVIE", movie)
-    }, [])
+        console.log(movie)
+    })
 
     return (
-        <Grid container={true} spacing={2}>
-            <Grid item={true} md={3}>
-                {
-                    movie.poster_path ?
-
-                        <img
-                            src={`${IMAGES_PATH}/w200${movie.poster_path}`}
-                            alt={movie.original_title}/>
-                        :
-                        <img
-                            src={COVER_PLACEHOLDER}
-                            alt={movie.original_title}/>
-
-                }
-            </Grid>
-            <Grid item={true} md={9}>
-
-                <Typography style={{fontWeight: 600, fontSize: '2rem'}}>
-                    {movie.title}
-                </Typography>
-                <Typography style={{fontWeight: 400, fontSize: '1.5rem', marginTop: '0.4rem'}}>
-                    Plot
-                </Typography>
-                <Typography style={{fontWeight: 400, fontSize: '1rem'}}>
+        <>
+            <div className={'film_name'}>
+                {movie.title}
+            </div>
+            <div className={'main_container'}>
+                <div className={'image'}>
                     {
-                        movie.overview
+                        movie.poster_path ?
+
+                            <img
+                                src={`${IMAGES_PATH}/w300${movie.poster_path}`}
+                                alt={movie.original_title}/>
+                            :
+                            <img
+                                src={COVER_PLACEHOLDER}
+                                alt={movie.original_title}/>
+
                     }
-                </Typography>
-                <Typography style={{fontWeight: 400, fontSize: '1.5rem', marginTop: '0.4rem'}}>
-                    Genres
-                </Typography>
-                <Typography style={{fontSize: '1rem', marginTop: '0.4rem'}}>
+                </div>
+                <div className={'info'}>
+                    <div className={'top_header'}>
+                        Duration
+                    </div>
+                    <div className={'normal'}>
+                        {movie.runtime} minutes
+                    </div>
+                    <div className={'header'}>
+                        Plot
+                    </div>
+                    <div className={'normal'}>
+                        {movie.overview}
+                    </div>
+                    <div className={'header'}>
+                        Genres
+                    </div>
 
-                    {
-                        movie.genres.map(genre => genre.name).join(", ")
-                    }
+                    <div className={'normal'}>
+                        {
+                            movie.genres.map(genre => genre.name).join(", ")
+                        }
+                    </div>
 
-                </Typography>
+                    <div className={'header'}>
+                        Tagline
+                    </div>
+                    <div className={'normal'}>
+                        {movie.tagline}
+                    </div>
+                    <div className={'header'}>
+                        Rating
+                    </div>
+                    <div className={'normal'}>
+                        {movie.vote_average.toFixed(1)}
+                    </div>
+                </div>
 
-            </Grid>
-
-
-        </Grid>
+            </div>
+        </>
     );
 };
 

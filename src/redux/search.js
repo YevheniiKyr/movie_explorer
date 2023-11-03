@@ -20,6 +20,7 @@ const searchSlice = createSlice({
         },
 
         fetchedSearchMovies: (state, action) => {
+            console.log("fetched search ", action.payload.results)
             return {
                 ...state,
                 isFetching: false,

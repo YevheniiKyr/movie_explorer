@@ -12,7 +12,6 @@ const MovieDetails = () => {
     const {movie} = useSelector((store) => store)
 
     useEffect(() => {
-        console.log("RENDER MOVIE DETAILS")
         id = parseInt(id)
         dispatch(getMovie(id))
         //
@@ -22,10 +21,8 @@ const MovieDetails = () => {
     }, [dispatch])
 
     useEffect(() => {
-        console.log("RENDER MOVIE DETAILS id changed")
 
         if (id !== movie.id?.toString()) {
-            console.log("new id")
             dispatch(getMovie(id))
         }
         // return () => {

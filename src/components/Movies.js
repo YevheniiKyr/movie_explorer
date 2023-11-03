@@ -5,6 +5,7 @@ import {Link} from "react-router-dom";
 import {IMAGES_PATH} from "../config";
 import {mapGenres} from "../helpers/mainHelper";
 import {useSelector} from "react-redux";
+import "../styles/movies.css"
 
 const Movies = ({movies}) => {
 
@@ -12,16 +13,15 @@ const Movies = ({movies}) => {
 
 
     useEffect(() => {
-        console.log("render movies")
-        console.log("movies", movies)
+
     }, [movies])
 
     if (!movies) return <Loader/>
     return (
-        <ImageList cols={5} rowHeight={365} gap={12}>
+        <ImageList cols={5} rowHeight={360} gap={20}>
             {
                 movies.results.map(movie => (
-                    // console.log(movies.results.length)
+
                     <ImageListItem key={movie.id}>
                         <Link to={`/movie/${movie.id}`}>
                             {
@@ -30,12 +30,17 @@ const Movies = ({movies}) => {
                                         <img
                                             src={`${IMAGES_PATH}/w200${movie.poster_path}`}
                                             alt={movie.title}>
-
                                         </img>
+
                                         <ImageListItemBar
+                                            style={{
+                                                width: '200px',
+                                                background: '#4e84cc'
+                                            }}
+
                                             title={movie.title}
                                             subtitle={mapGenres(movie.genre_ids, genres)}
-                                            style={{width: '200px'}}>
+                                        >
                                         </ImageListItemBar>
                                     </div>
                                 )

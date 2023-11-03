@@ -9,5 +9,4 @@ export function mapGenres(
 
     return genreIds.map(genreId =>
         genresMap[genreId]).join(", ")
-
 }

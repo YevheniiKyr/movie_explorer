@@ -41,7 +41,5 @@ export default function* watcherSaga() {
         yield takeEvery(getGenres.type, fetchGenres),
         yield takeEvery(getPopularMovies.type, fetchPopularMovies),
         yield takeEvery(getMovie.type, fetchMovie)
-
-
     ])
 }
