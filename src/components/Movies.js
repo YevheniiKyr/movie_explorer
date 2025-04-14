@@ -27,7 +27,6 @@ const Movies = ({ movies }) => {
                                     />
                                     <ImageListItemBar
                                         sx={{
-                                            width: '200px',
                                             background: '#0d4491',
                                             textAlign: 'center',
                                             color: 'white',

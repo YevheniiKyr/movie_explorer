@@ -17,6 +17,10 @@
     margin: 1vh 2vw
 }
 
+.image_list_item_bar {
+    width: 200px;
+}
+
 .image {
     width: 200px;
 }
@@ -26,13 +30,10 @@
         grid-template-columns: 1fr;
     }
 
-    .image {
+    .image, .image_list_item_bar{
         width: 275px;
     }
 
-    .image_list_item_bar {
-        width: 275px;
-    }
 }
 
 @media (min-width: 576px) and (max-width: 767px) {
@@ -40,13 +41,10 @@
         grid-template-columns: 1fr 1fr;
     }
 
-    .image {
+    .image, .image_list_item_bar {
         width: 250px;
     }
 
-    .image_list_item_bar {
-        width: 250px;
-    }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
