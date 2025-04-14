@@ -14,18 +14,38 @@
 }
 
 .image_list_item {
-   margin: 1vh 2vw
+    margin: 1vh 2vw
+}
+
+.image {
+    width: 200px;
 }
 
 @media (max-width: 575px) {
     .film_grid {
         grid-template-columns: 1fr;
     }
+
+    .image {
+        width: 275px;
+    }
+
+    .image_list_item_bar {
+        width: 275px;
+    }
 }
 
 @media (min-width: 576px) and (max-width: 767px) {
     .film_grid {
         grid-template-columns: 1fr 1fr;
+    }
+
+    .image {
+        width: 250px;
+    }
+
+    .image_list_item_bar {
+        width: 250px;
     }
 }
 

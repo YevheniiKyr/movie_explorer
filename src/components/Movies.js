@@ -21,7 +21,8 @@ const Movies = ({ movies }) => {
                         <Link to={`/movie/${movie.id}`} className={styles.link}>
                                 <div>
                                     <img
-                                        src={movie.poster_path ? `${IMAGES_PATH}/w200${movie.poster_path}` : COVER_PLACEHOLDER_200_300}
+                                        className={styles.image}
+                                        src={movie.poster_path ? `${IMAGES_PATH}/w300${movie.poster_path}` : COVER_PLACEHOLDER_200_300}
                                         alt={movie.title}
                                     />
                                     <ImageListItemBar
@@ -31,6 +32,7 @@ const Movies = ({ movies }) => {
                                             textAlign: 'center',
                                             color: 'white',
                                         }}
+                                        className={styles.image_list_item_bar}
                                         title={movie.title}
                                         subtitle={mapGenres(movie.genre_ids, genres)}
                                         position="below"
