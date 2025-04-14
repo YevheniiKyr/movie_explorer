@@ -20,7 +20,6 @@ const moviesSlice = createSlice({
             };
         },
         fetchedPopularMovies: (state, action) => {
-            console.log('hasMore in reducer', action.payload.page < 100000);
             return {
                 ...state,
                 isFetching: false,

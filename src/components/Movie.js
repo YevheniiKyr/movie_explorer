@@ -1,5 +1,5 @@
 import React from 'react';
-import { COVER_PLACEHOLDER, IMAGES_PATH } from '../config';
+import { COVER_PLACEHOLDER_92_138, IMAGES_PATH } from '../config';
 import styles from '../styles/movie.module.css';
 
 const Movie = ({ movie }) => {
@@ -17,7 +17,7 @@ const Movie = ({ movie }) => {
                         />
                     ) : (
                         <img
-                            src={COVER_PLACEHOLDER}
+                            src={COVER_PLACEHOLDER_92_138}
                             alt={movie.original_title}
                         />
                     )}

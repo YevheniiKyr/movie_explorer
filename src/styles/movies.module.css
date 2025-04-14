@@ -1,6 +1,12 @@
 .image_list_item_bar {
     width: 200px;
-    background: #4e84cc;
+    background: #0d4491;
+    text-align: center;
+    color: white;
+}
+
+.link {
+    text-decoration: none;
 }
 
 .film_grid {

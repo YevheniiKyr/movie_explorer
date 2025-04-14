@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Typography } from '@mui/material';
-import { COVER_PLACEHOLDER, IMAGES_PATH } from '../config';
+import { COVER_PLACEHOLDER_92_138, IMAGES_PATH } from '../config';
 import { mapGenres } from '../helpers/mainHelper';
 import React from 'react';
 import { useSelector } from 'react-redux';
@@ -25,7 +25,7 @@ const MovieSuggest = ({ movie, setSuggestionVisible }) => {
                             alt={movie.title}
                         />
                     ) : (
-                        <img src={COVER_PLACEHOLDER} alt={movie.title} />
+                        <img src={COVER_PLACEHOLDER_92_138} alt={movie.title} />
                     )}
                 </div>
                 <div className={styles.film_info_wrapper}>
