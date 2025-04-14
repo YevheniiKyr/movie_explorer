@@ -25,7 +25,12 @@ const Movies = ({ movies }) => {
                                         alt={movie.title}
                                     />
                                     <ImageListItemBar
-                                        className={styles.image_list_item_bar}
+                                        sx={{
+                                            width: '200px',
+                                            background: '#0d4491',
+                                            textAlign: 'center',
+                                            color: 'white',
+                                        }}
                                         title={movie.title}
                                         subtitle={mapGenres(movie.genre_ids, genres)}
                                         position="below"
