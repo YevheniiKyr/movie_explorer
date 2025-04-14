@@ -1,0 +1,16 @@
+.main_wrapper {
+    display: block;
+}
+
+.movie_list {
+    margin-top: 0;
+}
+
+.suggestion {
+    background-color: #e0dbea;
+    margin-top: 1rem;
+}
+
+.search_movies_container {
+    margin: 0 7vw;
+}

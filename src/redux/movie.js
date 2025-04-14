@@ -1,4 +1,4 @@
-import {createSlice} from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     movie: null,
@@ -8,10 +8,10 @@ const initialState = {
         totalResults: 0,
         page: 0,
         totalPages: 0,
-        isFetching: false
+        isFetching: false,
     },
-    isFetching: false
-}
+    isFetching: false,
+};
 
 const movieSlice = createSlice({
     name: 'movieSlice',
@@ -20,8 +20,8 @@ const movieSlice = createSlice({
         getMovie: (state) => {
             return {
                 ...state,
-                isFetching: true
-            }
+                isFetching: true,
+            };
         },
         fetchedMovie: (state, action) => {
             return {
@@ -29,18 +29,20 @@ const movieSlice = createSlice({
                 movie: action.payload,
                 recommendations: {
                     ...action.payload.recommendations,
-                    results: action.payload.recommendations.results.slice(0,10)
+                    results: action.payload.recommendations.results.slice(
+                        0,
+                        10
+                    ),
                 },
                 isFetching: false,
-            }
+            };
         },
         resetState: () => {
-            return initialState
-        }
+            return initialState;
+        },
+    },
+});
 
-    }
-})
+export const { getMovie, fetchedMovie, resetState } = movieSlice.actions;
 
-export const {getMovie, fetchedMovie, resetState} = movieSlice.actions
-
-export default movieSlice.reducer
+export default movieSlice.reducer;

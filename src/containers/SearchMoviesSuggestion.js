@@ -1,10 +1,12 @@
-import React, {useEffect} from 'react';
-import Suggestion from "../components/Suggestion";
+import React from 'react';
+import Suggestion from '../components/Suggestion';
+import styles from "../styles/suggestion.module.css"
 
 const SearchMoviesSuggestion = () => {
-
     return (
-     <Suggestion/>
+        <div className={styles.search_movies_container}>
+            <Suggestion />
+        </div>
     );
 };
 

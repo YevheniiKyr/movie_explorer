@@ -1,4 +1,4 @@
-import {createSlice} from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     results: [],
@@ -6,8 +6,8 @@ const initialState = {
     totalResults: 0,
     page: 0,
     totalPages: 0,
-    isFetching: true
-}
+    isFetching: true,
+};
 
 const moviesSlice = createSlice({
     name: 'moviesSlice',
@@ -16,11 +16,11 @@ const moviesSlice = createSlice({
         getPopularMovies: (state) => {
             return {
                 ...state,
-                isFetching: true
-            }
+                isFetching: true,
+            };
         },
         fetchedPopularMovies: (state, action) => {
-            console.log("hasMore in reducer", action.payload.page < 100000)
+            console.log('hasMore in reducer', action.payload.page < 100000);
             return {
                 ...state,
                 isFetching: false,
@@ -28,16 +28,16 @@ const moviesSlice = createSlice({
                 hasMore: action.payload.page < 100000,
                 totalResults: action.payload.total_results,
                 page: action.payload.page,
-                totalPages: action.payload.total_pages
-            }
+                totalPages: action.payload.total_pages,
+            };
         },
         resetState: (state) => {
-            return initialState
-        }
+            return initialState;
+        },
+    },
+});
 
-    }
-})
+export const { fetchedPopularMovies, getPopularMovies, resetState } =
+    moviesSlice.actions;
 
-export const {fetchedPopularMovies, getPopularMovies, resetState} = moviesSlice.actions
-
-export default moviesSlice.reducer
+export default moviesSlice.reducer;

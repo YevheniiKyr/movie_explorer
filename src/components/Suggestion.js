@@ -1,76 +1,73 @@
-import React, {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from "react-redux";
-import {searchMovies} from "../redux/search";
-import {TextField, Grid, Typography} from "@mui/material";
-import "../styles/suggestion.css"
-import MovieSuggest from "./MovieSuggest";
-const Suggestion = () => {
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { searchMovies } from '../redux/search';
+import { TextField } from '@mui/material';
+import styles from '../styles/suggestion.module.css';
+import MovieSuggest from './MovieSuggest';
 
-    const dispatch = useDispatch()
-    const [suggestionVisible, setSuggestionVisible] = useState(false)
-    const movies = useSelector((store) => store.search)
-    const [searchInput, setSearchInput] = useState('')
+const Suggestion = () => {
+    const dispatch = useDispatch();
+    const [suggestionVisible, setSuggestionVisible] = useState(false);
+    const movies = useSelector((store) => store.search);
+    const [searchInput, setSearchInput] = useState('');
+
     const inputOnChange = (e) => {
-        setSearchInput(e.target.value)
+        setSearchInput(e.target.value);
         if (!e.target.value) {
-            setSuggestionVisible(false)
-            return
+            setSuggestionVisible(false);
+            return;
         }
-        setSuggestionVisible(true)
-        dispatch(searchMovies(e.target.value))
-    }
+        setSuggestionVisible(true);
+        dispatch(searchMovies(e.target.value));
+    };
 
     useEffect(() => {
-        console.log("Suggestion rerender " + movies)
-    }, [movies])
+    }, [movies]);
 
     return (
-
-        <div style={{display: "block"}}>
+        <div className={styles.main_wrapper}>
             <div>
                 <TextField
                     value={searchInput}
                     onChange={(e) => {
-                        inputOnChange(e)
+                        inputOnChange(e);
                     }}
-                    // onBlur={() => {
-                    //     setSuggestionVisible(false)
-                    // }}
                     onFocus={() => {
-                        setSuggestionVisible(true)
+                        setSuggestionVisible(true);
                     }}
                     id="search"
                     placeholder="Search"
                     fullWidth={true}
-                    sx={{mb: 5}}
+                    sx={{ mb: 5 }}
                     variant="standard"
-
                 />
             </div>
-
-
-            <div style={{marginTop: '0rem', display: suggestionVisible ? null : 'none'}} >
-                {
-                    movies
-                        .results
-                        .filter(movie => {
-                            return movie.title.toLowerCase().includes(searchInput.toLowerCase())
+            {
+                suggestionVisible &&
+                <div className={styles.movie_list}>
+                    {movies.results
+                        .filter((movie) => {
+                            return movie.title
+                                .toLowerCase()
+                                .includes(searchInput.toLowerCase());
                         })
                         .slice(0, 5)
                         .map((movie) => (
                             <div
-                                className={"suggestion"}
+                                className={styles.suggestion}
                                 key={movie.id}
-                                style={{padding: 0}}
+                                style={{ padding: 0 }}
                             >
-                                <MovieSuggest movie={movie} setSuggestionVisible={setSuggestionVisible}/>
+                                <MovieSuggest
+                                    movie={movie}
+                                    setSuggestionVisible={setSuggestionVisible}
+                                />
                             </div>
-                        ))
-                }
-            </div>
+                        ))}
+                </div>
+            }
         </div>
-
-    )
+    );
 };
 
 export default Suggestion;

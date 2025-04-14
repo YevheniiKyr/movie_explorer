@@ -1,56 +1,42 @@
-import React, {useEffect} from 'react';
-import {ImageList, ImageListItem, ImageListItemBar} from "@mui/material";
-import Loader from "./Loader";
-import {Link} from "react-router-dom";
-import {IMAGES_PATH} from "../config";
-import {mapGenres} from "../helpers/mainHelper";
-import {useSelector} from "react-redux";
-import "../styles/movies.css"
+import React, { useEffect } from 'react';
+import { ImageListItem, ImageListItemBar } from '@mui/material';
+import Loader from './Loader';
+import { Link } from 'react-router-dom';
+import { IMAGES_PATH } from '../config';
+import { mapGenres } from '../helpers/mainHelper';
+import { useSelector } from 'react-redux';
+import styles from '../styles/movies.module.css';
 
-const Movies = ({movies}) => {
+const Movies = ({ movies }) => {
+    const { genres } = useSelector((store) => store.genres);
 
-    const {genres} = useSelector((store) => store.genres)
+    useEffect(() => {}, [movies]);
 
-
-    useEffect(() => {
-
-    }, [movies])
-
-    if (!movies) return <Loader/>
+    if (!movies) return <Loader />;
     return (
-        <ImageList cols={5} rowHeight={360} gap={20}>
-            {
-                movies.results.map(movie => (
-
-                    <ImageListItem key={movie.id}>
+        <div className={styles.main_container}>
+            <div className={styles.film_grid}>
+                {movies.results.map((movie) => (
+                    <ImageListItem key={movie.id} className={styles.image_list_item}>
                         <Link to={`/movie/${movie.id}`}>
-                            {
-                                movie.poster_path && (
-                                    <div>
-                                        <img
-                                            src={`${IMAGES_PATH}/w200${movie.poster_path}`}
-                                            alt={movie.title}>
-                                        </img>
-
-                                        <ImageListItemBar
-                                            style={{
-                                                width: '200px',
-                                                background: '#4e84cc'
-                                            }}
-
-                                            title={movie.title}
-                                            subtitle={mapGenres(movie.genre_ids, genres)}
-                                        >
-                                        </ImageListItemBar>
-                                    </div>
-                                )
-                            }
-
+                            {movie.poster_path && (
+                                <div>
+                                    <img
+                                        src={`${IMAGES_PATH}/w200${movie.poster_path}`}
+                                        alt={movie.title}
+                                    />
+                                    <ImageListItemBar
+                                        className={styles.image_list_item_bar}
+                                        title={movie.title}
+                                        subtitle={mapGenres(movie.genre_ids, genres)}
+                                    />
+                                </div>
+                            )}
                         </Link>
                     </ImageListItem>
-                ))
-            }
-        </ImageList>
+                ))}
+            </div>
+        </div>
     );
 };
 

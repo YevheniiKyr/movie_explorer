@@ -1,0 +1,31 @@
+.suggestion {
+    background-color: #e0dbea;
+    margin-top: 1rem;
+}
+
+.main_wrapper {
+    display: flex;
+}
+
+.link {
+    text-decoration: none;
+}
+
+.image_wrapper {
+    margin: 10px;
+}
+
+.film_info_wrapper {
+    margin-left: 1rem;
+    margin-top: 0.5rem;
+}
+
+.genres {
+    margin-top: 0.5rem;
+    color: #0375e0
+}
+
+.rating {
+    color:#139d0e;
+    margin-top: 0.5rem
+}
